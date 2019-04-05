@@ -1,0 +1,11 @@
+<h1>{{title}}</h1>
+<form action="/recipes" method="POST">
+    <label for="recipe">Recipe</label>
+    <input type="text" name="recipe">
+    <input type="submit">
+</form>
+<ul>
+    {{#each recipes}}
+    <li>{{this.recipe}}</li>
+    {{/each}}
+</ul>
