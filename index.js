@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const exphbs = require('express-handlebars');
+//const exphbs = require('express-handlebars');
 const recipe = require('./models/recipe');
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+//app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+//app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
     recipe.getRecipes((err, recipes) => {
         if (err) {
             throw err;
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
                 });
         }
     });
-});
+}); */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
