@@ -5,8 +5,18 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Recipe = require('../../models/recipe');
 
-mongoose.connect('mongodb://localhost/recipes', { useNewUrlParser: true });
-const db = mongoose.connection;
+//mongoose.connect('mongodb://localhost/recipes', { useNewUrlParser: true });
+//const db = mongoose.connection;
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://ncdm:M4vaffanculomongodb_@cluster0-vikrf.mongodb.net/test?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+    const collection = client.db("test").collection("recipes");
+    // perform actions on the collection object
+    console.log(collection.find());
+    client.close();
+});
 
 router.get('/', (req, res) => {
     Recipe.getRecipes((err, recipes) => {
