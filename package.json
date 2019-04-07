@@ -21,10 +21,10 @@
   "dependencies": {
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
+    "mongoose": "^5.4.22",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "mongoose": "^5.4.22",
     "nodemon": "^1.18.10"
   }
 }
