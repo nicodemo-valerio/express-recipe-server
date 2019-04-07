@@ -32,7 +32,8 @@ router.post('/', (req, res) => {
         if (err) {
             res.status(400).json(err);
         } else {
-            res.json(recipe);
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.send(JSON.stringify(recipe));
         }
     });
 });
@@ -44,7 +45,8 @@ router.put('/:_id', (req, res) => {
         if (err) {
             res.status(400).json({ error: `recipe with id ${id} not found` });
         } else {
-            res.json(recipe);
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.send(JSON.stringify(recipe));
         }
     });
 });
@@ -55,7 +57,8 @@ router.delete('/:_id', (req, res) => {
         if (err) {
             res.status(400).json({ error: `recipe with id ${id} not found` });
         } else {
-            res.json({ message: `recipe with id ${id} deleted` });
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.send(JSON.stringify({ message: `recipe with id ${id} deleted` }));
         }
     });
 });
