@@ -20,7 +20,8 @@ router.get('/', (req, res) => {
         if (err) {
             res.status(400);
         } else {
-            res.json(recipes);
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.send(JSON.stringify(recipes));
         }
     });
 });
