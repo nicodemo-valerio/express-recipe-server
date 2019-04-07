@@ -5,7 +5,13 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Recipe = require('../../models/recipe');
 
-mongoose.connect('mongodb+srv://ncdm:nessuna@cluster0-vikrf.mongodb.net/recipes?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://ncdm:nessuna@cluster0-vikrf.mongodb.net/recipes?retryWrites=true', { useNewUrlParser: true }, (err, res) => {
+    if (err) {
+        console.log(`Error during connection to MongoDB: ${err}`);
+    } else {
+        console.log(`Connected to MongoDB`);
+    }
+});
 //mongoose.connect('mongodb://localhost/recipes', { useNewUrlParser: true });
 const db = mongoose.connection;
 
