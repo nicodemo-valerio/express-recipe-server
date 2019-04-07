@@ -1,3 +1,6 @@
+/**
+ * recipe.js
+ */
 const mongoose = require('mongoose');
 
 const recipeSchema = mongoose.Schema({
