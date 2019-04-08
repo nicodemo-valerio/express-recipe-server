@@ -35,13 +35,13 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const recipe = req.body;
-    Recipe.addRecipe(recipe, (err) => {
+    Recipe.addRecipe(recipe, (err, insertedRecipe) => {
         if (err) {
             res.status(400).json(err);
         } else {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(recipe));
+            res.send(JSON.stringify(insertedRecipe));
         }
     });
 });
@@ -49,13 +49,13 @@ router.post('/', (req, res) => {
 router.put('/:_id', (req, res) => {
     const id = req.params._id;
     const recipe = req.body;
-    Recipe.updateRecipe(id, recipe, {}, (err) => {
+    Recipe.updateRecipe(id, recipe, {}, (err, updatedRecipe) => {
         if (err) {
             res.status(400).json({ error: `recipe with id ${id} not found` });
         } else {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(recipe));
+            res.send(JSON.stringify(updatedRecipe));
         }
     });
 });
