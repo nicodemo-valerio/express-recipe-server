@@ -5,14 +5,20 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Recipe = require('../../models/recipe');
 
-mongoose.connect('mongodb+srv://ncdm:nessuna@cluster0-vikrf.mongodb.net/recipes?retryWrites=true', { useNewUrlParser: true }, (err, res) => {
+/* mongoose.connect('mongodb+srv://ncdm:nessuna@cluster0-vikrf.mongodb.net/recipes?retryWrites=true', { useNewUrlParser: true }, (err, res) => {
     if (err) {
         console.log(`Error during connection to MongoDB: ${err}`);
     } else {
-        console.log(`Connected to MongoDB`);
+        console.log(`Connected to MongoDB remote cluster`);
+    }
+}); */
+mongoose.connect('mongodb://localhost/recipes', { useNewUrlParser: true }, (err, res) => {
+    if (err) {
+        console.log(`Error during connection to MongoDB: ${err}`);
+    } else {
+        console.log(`Connected to local MongoDB`);
     }
 });
-//mongoose.connect('mongodb://localhost/recipes', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 router.get('/', (req, res) => {
@@ -21,6 +27,7 @@ router.get('/', (req, res) => {
             res.status(400);
         } else {
             res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(recipes));
         }
     });
@@ -33,6 +40,7 @@ router.post('/', (req, res) => {
             res.status(400).json(err);
         } else {
             res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(recipe));
         }
     });
@@ -46,6 +54,7 @@ router.put('/:_id', (req, res) => {
             res.status(400).json({ error: `recipe with id ${id} not found` });
         } else {
             res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(recipe));
         }
     });

@@ -1,7 +1,8 @@
 // index.js
 const express = require('express');
 const app = express();
-const recipe = require('./models/recipe');
+const cors = require('cors');
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
