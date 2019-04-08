@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
 router.put('/:_id', (req, res) => {
     const id = req.params._id;
     const recipe = req.body;
-    Recipe.updateRecipe(id, recipe, {}, (err, updatedRecipe) => {
+    Recipe.updateRecipe(id, recipe, { new: true }, (err, updatedRecipe) => {
         if (err) {
             res.status(400).json({ error: `recipe with id ${id} not found` });
         } else {
