@@ -5,18 +5,13 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Recipe = require('../../models/recipe');
 
-/* mongoose.connect('mongodb+srv://ncdm:nessuna@cluster0-vikrf.mongodb.net/recipes?retryWrites=true', { useNewUrlParser: true }, (err, res) => {
+//const URI = 'mongodb://localhost/recipes';
+const URI = 'mongodb+srv://ncdm:nessuna@cluster0-vikrf.mongodb.net/recipes?retryWrites=true';
+mongoose.connect(URI, { useNewUrlParser: true }, (err, res) => {
     if (err) {
         console.log(`Error during connection to MongoDB: ${err}`);
     } else {
-        console.log(`Connected to MongoDB remote cluster`);
-    }
-}); */
-mongoose.connect('mongodb://localhost/recipes', { useNewUrlParser: true }, (err, res) => {
-    if (err) {
-        console.log(`Error during connection to MongoDB: ${err}`);
-    } else {
-        console.log(`Connected to local MongoDB`);
+        console.log(`Connected to ${URI}`);
     }
 });
 const db = mongoose.connection;
