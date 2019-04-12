@@ -15,6 +15,10 @@ const recipeSchema = mongoose.Schema({
     steps: {
         type: Array,
         required: true
+    },
+    isInEdit: {
+        type: Boolean,
+        required: false
     }
 }
 );
@@ -31,13 +35,9 @@ module.exports.addRecipe = (recipe, callback) => {
 
 module.exports.updateRecipe = (id, recipe, options, callback) => {
     const query = { _id: id };
-    const update = {
-        recipe: recipe.recipe
-    }
-    Recipe.findOneAndUpdate(query, update, options, callback);
+    Recipe.findOneAndUpdate(query, recipe, options, callback);
 }
 
 module.exports.deleteRecipe = (id, options, callback) => {
-    const query = { _id: id };
     Recipe.findByIdAndDelete(id, options, callback);
 }
