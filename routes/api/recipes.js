@@ -7,6 +7,12 @@ const Recipe = require('../../models/recipe');
 
 //const URI = 'mongodb://localhost/recipes';
 const URI = 'mongodb+srv://ncdm:nessuna@cluster0-vikrf.mongodb.net/recipes?retryWrites=true';
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
 mongoose.connect(URI, { useNewUrlParser: true }, (err, res) => {
     if (err) {
         console.log(`Error during connection to MongoDB: ${err}`);
